@@ -1,22 +1,24 @@
 import { ButtonProps, ButtonVariant } from "./Button.types";
 
 const variants: Record<ButtonVariant, string> = {
-  filled:
+  primary:
     "bg-button-primary-bg text-button-primary-fg border-button-primary-border",
-  color: "",
-  plain: "",
+  secondary:
+    "bg-button-secondary-bg text-button-secondary-fg border-button-secondary-border",
+  "secondary-color":
+    "bg-button-secondary-color-bg text-button-secondary-color-fg border-button-secondary-color-border",
 };
 
 export default function Button({
   label,
   icon,
-  variant = "filled",
+  variant = "primary",
 }: ButtonProps) {
   const variantClasses = variants[variant];
 
   return (
     <button
-      className={`rounded-md px-[14px] py-[10px] w-max flex items-center gap-xs ${variantClasses}`}
+      className={`border rounded-md px-[14px] py-[10px] w-max flex items-center gap-xs ${variantClasses}`}
     >
       {icon}
       <p className="text-sm/semibold">{label}</p>

@@ -1,4 +1,4 @@
-type ButtonVariant = "filled" | "color" | "plain";
+type ButtonVariant = "primary" | "secondary" | "secondary-color";
 
 interface ButtonProps {
   label: string;
