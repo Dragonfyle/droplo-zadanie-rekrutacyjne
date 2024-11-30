@@ -6,6 +6,7 @@
 
 :root {
   --fg-quaternary: #667085;
+  --bg-page: #f5f5f5;
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
 
@@ -44,6 +45,7 @@
   --spacing-xl: 1rem;
   --spacing-2xl: 1.25rem;
   --spacing-3xl: 1.5rem;
+  --spacing-4xl: 2rem;
 
   --shadow-xs: 0px 1px 2px 0px #1018280d;
 
@@ -52,4 +54,5 @@
 
 body {
   font-family: "Inter", sans-serif;
+  background-color: var(--bg-page);
 }

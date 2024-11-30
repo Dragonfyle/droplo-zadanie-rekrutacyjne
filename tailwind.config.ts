@@ -16,12 +16,10 @@ export default {
         xl: "var(--spacing-xl)",
         "2xl": "var(--spacing-2xl)",
         "3xl": "var(--spacing-3xl)",
+        "4xl": "var(--spacing-4xl)",
       },
 
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-
         bg: {
           primary: "var(--bg-primary)",
           secondary: "var(--bg-secondary)",
@@ -81,6 +79,13 @@ export default {
             fontWeight: "var(--font-weight-regular)",
           },
         ],
+      },
+
+      textColor: {
+        primary: "var(--text-primary)",
+        secondary: "var(--text-secondary)",
+        tertiary: "var(--text-tertiary)",
+        placeholder: "var(--text-placeholder)",
       },
     },
   },
