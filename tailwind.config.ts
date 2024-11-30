@@ -11,6 +11,7 @@ export default {
       spacing: {
         xxs: "var(--spacing-xxs)",
         xs: "var(--spacing-xs)",
+        sm: "var(--spacing-sm)",
         md: "var(--spacing-md)",
         lg: "var(--spacing-lg)",
         xl: "var(--spacing-xl)",
@@ -35,6 +36,16 @@ export default {
             fg: "var(--button-primary-fg)",
             bg: "var(--button-primary-bg)",
             border: "var(--button-primary-border)",
+          },
+          secondary: {
+            fg: "var(--button-secondary-fg)",
+            bg: "var(--button-secondary-bg)",
+            border: "var(--button-secondary-border)",
+            color: {
+              bg: "var(--button-secondary-color-bg)",
+              fg: "var(--button-secondary-color-fg)",
+              border: "var(--button-secondary-color-border)",
+            },
           },
         },
       },
