@@ -5,9 +5,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
 
 :root {
-  --foreground: #171717;
-  --background: #ffffff;
-
   --fg-quaternary: #667085;
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
@@ -54,7 +51,5 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: "Inter", sans-serif;
 }
