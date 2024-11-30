@@ -8,7 +8,7 @@ export default function AddNewItemFormInputs() {
       <Input
         label="Link"
         placeholder="Wklej lub wyszukaj"
-        icon={<Search className="text-placeholder" />}
+        icon={<Search className="text-placeholder h-5 w-5 " />}
       />
     </div>
   );
