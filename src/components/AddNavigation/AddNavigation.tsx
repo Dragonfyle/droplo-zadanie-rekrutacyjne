@@ -1,11 +1,9 @@
-import SectionWrapper from "@components/generics/SectionWrapper";
-
 import AddNavigationForm from "./AddNavigationForm";
 
 export default function AddNavigation() {
-  return (
-    <SectionWrapper>
-      <AddNavigationForm />
-    </SectionWrapper>
-  );
+    return (
+        <section className="flex w-full justify-center rounded-md border border-border-secondary bg-bg-primary px-xl py-3xl">
+            <AddNavigationForm />
+        </section>
+    );
 }
