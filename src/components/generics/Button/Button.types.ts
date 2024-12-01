@@ -1,9 +1,8 @@
-type ButtonVariant = "primary" | "secondary" | "secondary-color";
+type ButtonVariant = "primary" | "secondary" | "secondary-color" | "plain";
 
 interface ButtonProps {
-  label: string;
-  icon?: React.ReactNode;
-  variant?: ButtonVariant;
+    label: string;
+    icon?: React.ReactNode;
+    variant?: ButtonVariant;
 }
-
 export type { ButtonProps, ButtonVariant };
