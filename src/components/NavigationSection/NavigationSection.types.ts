@@ -1,7 +1,7 @@
-import { NavigationItem } from "./NavigationItem/NavigationItem.types";
+import { NavigationItemProps as NavigationItem } from "./NavigationItem/NavigationItem.types";
 
 interface NavigationSectionProps {
-  items: NavigationItem[];
+    items: NavigationItem[];
 }
 
 export type { NavigationSectionProps };
