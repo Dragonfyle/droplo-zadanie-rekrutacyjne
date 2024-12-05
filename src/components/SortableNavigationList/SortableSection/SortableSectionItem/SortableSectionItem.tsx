@@ -15,6 +15,7 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
     dragHandleRef
 ) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     const rounded = isFirstLevel ? "rounded-t-md" : "";
     const opacity = isDragging ? "opacity-30" : "";
@@ -22,6 +23,7 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
     const handleRemove = () => {
         setNodeTree((prev) => {
             const nodeTreeCopy = structuredClone(prev);
+
             const parentId = getParentId(nodeTreeCopy, id);
             if (!parentId) return nodeTreeCopy;
 
@@ -41,6 +43,16 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
         });
     };
 
+    const handleEdit = () => {
+        setIsExpanded(true);
+        setIsEditing(true);
+    };
+
+    const handleCancel = () => {
+        setIsExpanded(false);
+        setIsEditing(false);
+    };
+
     return (
         <li ref={dragHandleRef} className={`w-full ${opacity} ${className}`}>
             <div
@@ -56,6 +68,7 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
                 <SortableSectionItemButtons
                     handleToggle={() => setIsExpanded((prev) => !prev)}
                     handleRemove={handleRemove}
+                    handleEdit={handleEdit}
                 />
             </div>
 
@@ -64,7 +77,9 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
                     <AddNavigationForm
                         parentId={id}
                         handleAdd={setNodeTree}
-                        handleCancel={() => setIsExpanded(false)}
+                        handleCancel={handleCancel}
+                        defaultValues={isEditing ? { name, url } : undefined}
+                        confirmButtonLabel={isEditing ? "Zapisz" : "Dodaj"}
                     />
                 </div>
             )}

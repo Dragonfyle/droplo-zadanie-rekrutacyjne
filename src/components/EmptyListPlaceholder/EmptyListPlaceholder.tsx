@@ -27,6 +27,7 @@ export default function EmptyListPlaceholder({ handleAdd }: { handleAdd: Dispatc
                     parentId={ROOT_NODE_ID}
                     handleAdd={handleAdd}
                     handleCancel={() => setIsExpanded(false)}
+                    confirmButtonLabel="Dodaj"
                 />
             )}
         </section>

@@ -22,6 +22,7 @@ export default function SortableNavigationListAddButton({ handleAdd }: SortableN
                     parentId={ROOT_NODE_ID}
                     handleAdd={handleAdd}
                     handleCancel={() => setIsExpanded(false)}
+                    confirmButtonLabel="Dodaj"
                 />
             )}
         </div>

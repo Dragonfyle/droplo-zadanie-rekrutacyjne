@@ -4,12 +4,23 @@ import AddNavigationFormButtons from "./AddNavigationFormButtons";
 import AddNavigationFormInputs from "./AddNavigationFormInputs";
 import { AddNavigationFormProps, Inputs } from "./AddNavigationForm.types";
 
-export default function AddNavigationForm({ handleAdd, handleCancel, parentId }: AddNavigationFormProps) {
+export default function AddNavigationForm({
+    handleAdd,
+    handleCancel,
+    parentId,
+    defaultValues,
+    confirmButtonLabel,
+}: AddNavigationFormProps) {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>();
+    } = useForm<Inputs>({
+        defaultValues: {
+            name: defaultValues?.name ?? "",
+            url: defaultValues?.url ?? "",
+        },
+    });
 
     const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
         handleAdd((prev) => {
@@ -36,7 +47,7 @@ export default function AddNavigationForm({ handleAdd, handleCancel, parentId }:
             className="flex w-full flex-col gap-2xl rounded-md border border-border-primary bg-bg-primary px-3xl py-xl"
             onSubmit={handleSubmit(onSubmit)}>
             <AddNavigationFormInputs register={register} errors={errors} />
-            <AddNavigationFormButtons handleCancel={handleCancel} />
+            <AddNavigationFormButtons label={confirmButtonLabel} handleCancel={handleCancel} />
         </form>
     );
 }

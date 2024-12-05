@@ -8,10 +8,14 @@ type Inputs = {
     url: string;
 };
 
+type ConfirmButtonLabel = "Dodaj" | "Zapisz";
+
 interface AddNavigationFormProps {
     handleAdd: Dispatch<SetStateAction<NodeTree>>;
     handleCancel: () => void;
     parentId: UniqueIdentifier;
+    defaultValues?: Partial<Inputs>;
+    confirmButtonLabel: ConfirmButtonLabel;
 }
 
-export type { AddNavigationFormProps, Inputs };
+export type { AddNavigationFormProps, Inputs, ConfirmButtonLabel };
