@@ -166,7 +166,7 @@ function handleMoveIntoNode({ active, over, nodeTree }: TreeManipulationParams):
     const parentNode = nodeTree.get(over.id);
     const originalParentId = getParentId(nodeTree, active.id);
 
-    if (!parentNode || !originalParentId || parentNode.children?.includes(active.id)) return;
+    if (!parentNode || !originalParentId || destinationIsDecendantOfOrigin(nodeTree, over.id, active.id)) return;
 
     try {
         const updatedOriginChildren = removeChildMutOrThrow({
