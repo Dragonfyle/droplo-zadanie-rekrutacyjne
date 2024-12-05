@@ -1,6 +1,5 @@
 import { DragEndEvent, UniqueIdentifier } from "@dnd-kit/core";
 
-// Base types
 type Node = {
     name: string;
     url: string;
@@ -9,7 +8,6 @@ type Node = {
 
 type NodeTree = Map<UniqueIdentifier, Node>;
 
-// Common params
 type BaseParams = {
     nodeTree: NodeTree;
     active: DragEndEvent["active"];
