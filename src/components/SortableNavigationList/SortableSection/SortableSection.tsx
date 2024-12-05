@@ -37,7 +37,7 @@ export default function SortableSection({
     const shouldInsertAbove = isOverSelf && isAboveCenter;
     const shouldInsertInto = isOverSelf && !isAboveCenter;
 
-    const nestingMarginClasses = isFirstLevel ? "" : "ml-20";
+    const nestingMarginClasses = isFirstLevel ? "" : "ml-4xl lg:ml-20";
     const ulClasses = `${className} ${nestingMarginClasses}`;
     const liClasses = shouldInsertInto ? "bg-bg-tertiary scale-105" : "";
 

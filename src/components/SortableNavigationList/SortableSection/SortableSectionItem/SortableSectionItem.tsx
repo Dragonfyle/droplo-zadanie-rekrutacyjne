@@ -56,7 +56,7 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
     return (
         <li ref={dragHandleRef} className={`w-full ${opacity} ${className}`}>
             <div
-                className={`${rounded} flex w-full flex-col justify-between border border-border-secondary bg-bg-primary px-3xl py-xl lg:flex-row`}>
+                className={`${rounded} flex w-full flex-col justify-between gap-lg border border-border-secondary bg-bg-primary px-3xl py-xl lg:flex-row`}>
                 <div className="flex items-center gap-2xl">
                     <div {...restProps} className="cursor-grab">
                         <MoveIcon className="h-5 w-5 touch-none select-none text-tertiary" />

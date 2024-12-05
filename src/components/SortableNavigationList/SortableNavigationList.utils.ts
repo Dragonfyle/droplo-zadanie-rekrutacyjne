@@ -129,32 +129,29 @@ function getSubtree(nodeTree: NodeTree, id: UniqueIdentifier): NodeTree {
 function handleSameParentNodeMut({ active, over, nodeTree, mouseY }: SameParentDropParams) {
     if (!over) return nodeTree;
 
-    const destinationParentId = getParentId(nodeTree, over.id);
-    if (!destinationParentId) return nodeTree;
+    const parentId = getParentId(nodeTree, active.id);
+    if (!parentId) return nodeTree;
 
-    const destinationParentNode = nodeTree.get(destinationParentId);
-    if (!destinationParentNode || over.id === active.id) return nodeTree;
+    const parentNode = nodeTree.get(parentId);
+    if (!parentNode || over.id === active.id) return nodeTree;
 
     const isAboveCenter = isPointerAboveVerticalThreshold(mouseY, over.rect);
 
     if (isAboveCenter) {
-        const swappedChildren = swapChildren(active, over, destinationParentNode) ?? destinationParentNode.children;
-        nodeTree.set(destinationParentId, { ...destinationParentNode, children: swappedChildren });
-
+        const swappedChildren = swapChildren(active, over, parentNode) ?? parentNode.children;
+        nodeTree.set(parentId, { ...parentNode, children: swappedChildren });
         return nodeTree;
     }
 
-    const childNode = nodeTree.get(active.id);
-    const parentId = getParentId(nodeTree, active.id);
-    if (!childNode || !parentId) return nodeTree;
+    const destinationNode = nodeTree.get(over.id);
+    if (!destinationNode) return nodeTree;
 
     try {
         const updatedDest = appendChildMutOrThrow({ nodeTree, parentId: over.id, childId: active.id });
         const updatedOrigin = removeChildMutOrThrow({ nodeTree, parentId, childId: active.id });
 
-        nodeTree.set(over.id, { ...destinationParentNode, children: updatedDest });
-        nodeTree.set(parentId, { ...destinationParentNode, children: updatedOrigin });
-        //we can swallow errors because if they occur, the nodes simply remain in their original place
+        nodeTree.set(over.id, { ...destinationNode, children: updatedDest });
+        nodeTree.set(parentId, { ...parentNode, children: updatedOrigin });
     } catch {}
 
     return nodeTree;
