@@ -76,7 +76,7 @@ export default function SortableNavigationList() {
                             isFirstLevel={true}
                         />
 
-                        <SortableNavigationListAddButton />
+                        <SortableNavigationListAddButton handleAdd={setNodeTree} />
                     </div>
                 ) : (
                     <EmptyListPlaceholder handleAdd={setNodeTree} />
