@@ -8,6 +8,7 @@ import AddNavigationForm from "@/components/AddNavigation/AddNavigationForm";
 import { SortableSectionItemProps } from "./SortableSectionItem.types";
 import SortableSectionItemButtons from "./SortableSectionItemButtons";
 import SortableSectionItemContent from "./SortableSectionItemContent";
+import { getParentId } from "../../SortableNavigationList.utils";
 
 export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function SortableSectionItem(
     { name, url, isDragging, isFirstLevel, className, setNodeTree, id, ...restProps },
@@ -17,6 +18,28 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
 
     const rounded = isFirstLevel ? "rounded-t-md" : "";
     const opacity = isDragging ? "opacity-30" : "";
+
+    const handleRemove = () => {
+        setNodeTree((prev) => {
+            const nodeTreeCopy = structuredClone(prev);
+            const parentId = getParentId(nodeTreeCopy, id);
+            if (!parentId) return nodeTreeCopy;
+
+            const parentNode = nodeTreeCopy.get(parentId);
+            if (!parentNode) return nodeTreeCopy;
+
+            if (parentNode.children) {
+                parentNode.children = parentNode.children?.filter((childId) => childId !== id);
+                if (parentNode.children.length === 0) {
+                    delete parentNode.children;
+                }
+            }
+
+            nodeTreeCopy.delete(id);
+
+            return nodeTreeCopy;
+        });
+    };
 
     return (
         <li ref={dragHandleRef} className={`w-full ${opacity} ${className}`}>
@@ -30,7 +53,10 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
                     <SortableSectionItemContent name={name} url={url} />
                 </div>
 
-                <SortableSectionItemButtons handleToggle={() => setIsExpanded((prev) => !prev)} />
+                <SortableSectionItemButtons
+                    handleToggle={() => setIsExpanded((prev) => !prev)}
+                    handleRemove={handleRemove}
+                />
             </div>
 
             {isExpanded && (
