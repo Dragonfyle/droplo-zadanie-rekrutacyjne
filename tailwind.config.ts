@@ -31,6 +31,7 @@ export default {
                 border: {
                     primary: "var(--border-primary)",
                     secondary: "var(--border-secondary)",
+                    error: "var(--border-error)",
                 },
 
                 button: {
@@ -99,6 +100,7 @@ export default {
                 secondary: "var(--text-secondary)",
                 tertiary: "var(--text-tertiary)",
                 placeholder: "var(--text-placeholder)",
+                error: "var(--text-error)",
             },
         },
     },

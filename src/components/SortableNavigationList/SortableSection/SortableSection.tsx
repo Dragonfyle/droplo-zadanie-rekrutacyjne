@@ -16,6 +16,8 @@ export default function SortableSection({
     className,
     isSectionDragging = false,
     isFirstLevel = true,
+    firstNodeId,
+    setNodeTree,
 }: SortableSectionProps) {
     const mousePosition = useMousePosition();
     const { setNodeRef, attributes, listeners, isDragging, isOver, rect } = useSortable({
@@ -48,7 +50,10 @@ export default function SortableSection({
 
                     <SortableSectionItem
                         ref={setNodeRef}
+                        setNodeTree={setNodeTree}
                         isDragging={isItemOrSectionDragging}
+                        isFirstLevel={id === firstNodeId}
+                        id={id}
                         {...node}
                         {...attributes}
                         {...listeners}
@@ -65,7 +70,9 @@ export default function SortableSection({
                             nodeTree={nodeTree}
                             id={childId}
                             isSectionDragging={isItemOrSectionDragging}
+                            firstNodeId={firstNodeId}
                             isFirstLevel={id === ROOT_NODE_ID}
+                            setNodeTree={setNodeTree}
                         />
                     </li>
                 ))}

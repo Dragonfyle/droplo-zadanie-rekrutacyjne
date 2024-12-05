@@ -18,6 +18,7 @@ const ROOT_NODE_ID = "root";
 
 function getAllIds(nodeTree: NodeTree, startSectionId: UniqueIdentifier): UniqueIdentifier[] {
     const startItem = nodeTree.get(startSectionId);
+
     return [startSectionId, ...(startItem?.children?.flatMap((childId) => getAllIds(nodeTree, childId)) ?? [])];
 }
 

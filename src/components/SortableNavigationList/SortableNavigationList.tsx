@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-
 import { DndContext, pointerWithin, DragEndEvent, DragStartEvent, UniqueIdentifier, DragOverlay } from "@dnd-kit/core";
-
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+
+import useMousePosition from "@/hooks/useMousePosition";
+
 import { NodeTree } from "./SortableNavigationList.types";
 import {
     getAllIds,
@@ -16,105 +17,13 @@ import {
 } from "./SortableNavigationList.utils";
 import SortableSection from "./SortableSection";
 import PresentationalSection from "./PresentationalSection";
-import useMousePosition from "@/hooks/useMousePosition";
+import SortableNavigationListAddButton from "./SortableNavigationListAddButton";
+import EmptyListPlaceholder from "../EmptyListPlaceholder";
 
 export default function SortableNavigationList() {
     const [activeItemId, setActiveItemId] = useState<UniqueIdentifier | null>(null);
     const mousePosition = useMousePosition();
-    //todo
-    const [nodeTree, setNodeTree] = useState<NodeTree>(
-        new Map([
-            [
-                ROOT_NODE_ID,
-                {
-                    name: "root",
-                    url: "/",
-                    children: ["a", "b", "c"],
-                },
-            ],
-            [
-                "a",
-                {
-                    name: "a",
-                    url: "/a",
-                    children: ["a1", "a2"],
-                },
-            ],
-            [
-                "a1",
-                {
-                    name: "a1",
-                    url: "/a1",
-                },
-            ],
-            [
-                "a2",
-                {
-                    name: "a2",
-                    url: "/a2",
-                },
-            ],
-            [
-                "b",
-                {
-                    name: "b",
-                    url: "/b",
-                    children: ["b1", "b2"],
-                },
-            ],
-            [
-                "b1",
-                {
-                    name: "b1",
-                    url: "/b1",
-                    children: ["b1.1", "b1.2"],
-                },
-            ],
-            [
-                "b1.1",
-                {
-                    name: "b1.1",
-                    url: "/b1.1",
-                    children: ["b1.1.1", "b1.1.2"],
-                },
-            ],
-            [
-                "b1.1.1",
-                {
-                    name: "b1.1.1",
-                    url: "/b1.1.1",
-                },
-            ],
-            [
-                "b1.1.2",
-                {
-                    name: "b1.1.2",
-                    url: "/b1.1.2",
-                },
-            ],
-            [
-                "b1.2",
-                {
-                    name: "b1.2",
-                    url: "/b1.2",
-                },
-            ],
-            [
-                "b2",
-                {
-                    name: "b2",
-                    url: "/b2",
-                },
-            ],
-            [
-                "c",
-                {
-                    name: "c",
-                    url: "/c",
-                },
-            ],
-        ])
-    );
+    const [nodeTree, setNodeTree] = useState<NodeTree>(new Map([[ROOT_NODE_ID, { name: "root", url: "/" }]]));
 
     const ids = getAllIds(nodeTree, ROOT_NODE_ID);
 
@@ -157,7 +66,21 @@ export default function SortableNavigationList() {
     return (
         <DndContext collisionDetection={pointerWithin} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
             <SortableContext items={ids} strategy={verticalListSortingStrategy}>
-                <SortableSection nodeTree={nodeTree} id={ROOT_NODE_ID} />
+                {ids.length > 1 ? (
+                    <div className="w-full rounded-md border border-border-primary bg-bg-secondary first:rounded-t-md lg:items-center">
+                        <SortableSection
+                            nodeTree={nodeTree}
+                            setNodeTree={setNodeTree}
+                            id={ROOT_NODE_ID}
+                            firstNodeId={ids[1]}
+                            isFirstLevel={true}
+                        />
+
+                        <SortableNavigationListAddButton />
+                    </div>
+                ) : (
+                    <EmptyListPlaceholder setNodeTree={setNodeTree} />
+                )}
             </SortableContext>
 
             <DragOverlay dropAnimation={null}>
