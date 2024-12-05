@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 
-import { NavigationItemContentProps } from "./NavigationItemContent.types";
+import { SortableSectionItemContentProps } from "./SortableSectionItemContent.types";
 
-export default function NavigationItemContent({ name, url }: NavigationItemContentProps) {
+export default function SortableSectionItemContent({ name, url }: SortableSectionItemContentProps) {
     return (
         <div className="flex flex-col gap-sm">
             <p className="text-sm/semibold text-primary">{name}</p>
