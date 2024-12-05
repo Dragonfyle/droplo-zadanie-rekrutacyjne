@@ -79,7 +79,7 @@ export default function SortableNavigationList() {
                         <SortableNavigationListAddButton />
                     </div>
                 ) : (
-                    <EmptyListPlaceholder setNodeTree={setNodeTree} />
+                    <EmptyListPlaceholder handleAdd={setNodeTree} />
                 )}
             </SortableContext>
 

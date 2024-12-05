@@ -1,17 +1,10 @@
 import { Search } from "lucide-react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 import Input from "@components/generics/Input";
 
-import { Inputs } from "../AddNavigationForm.types";
+import { AddNavigationFormInputsProps } from "./AddNavigationFormInputs.types";
 
-export default function AddNewItemFormInputs({
-    register,
-    errors,
-}: {
-    register: UseFormRegister<Inputs>;
-    errors: FieldErrors<Inputs>;
-}) {
+export default function AddNavigationFormInputs({ register, errors }: AddNavigationFormInputsProps) {
     const border = errors.name ? "border-border-error" : "border-border-primary";
 
     return (

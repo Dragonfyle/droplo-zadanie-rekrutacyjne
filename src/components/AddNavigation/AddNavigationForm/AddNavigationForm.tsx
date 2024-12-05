@@ -1,20 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { UniqueIdentifier } from "@dnd-kit/core";
-
-import { NodeTree } from "@/components/SortableNavigationList/SortableNavigationList.types";
 
 import AddNavigationFormButtons from "./AddNavigationFormButtons";
 import AddNavigationFormInputs from "./AddNavigationFormInputs";
-import { Inputs } from "./AddNavigationForm.types";
+import { AddNavigationFormProps, Inputs } from "./AddNavigationForm.types";
 
-export default function AddNavigationForm({
-    setNodeTree,
-    parentId,
-}: {
-    setNodeTree: Dispatch<SetStateAction<NodeTree>>;
-    parentId: UniqueIdentifier;
-}) {
+export default function AddNavigationForm({ handleAdd, handleCancel, parentId }: AddNavigationFormProps) {
     const {
         register,
         handleSubmit,
@@ -22,7 +12,7 @@ export default function AddNavigationForm({
     } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-        setNodeTree((prev) => {
+        handleAdd((prev) => {
             const nodeTreeCopy = structuredClone(prev);
             const newId = Math.random().toString();
 
@@ -44,7 +34,7 @@ export default function AddNavigationForm({
             className="flex w-full flex-col gap-2xl rounded-md border border-border-primary bg-bg-primary px-3xl py-xl"
             onSubmit={handleSubmit(onSubmit)}>
             <AddNavigationFormInputs register={register} errors={errors} />
-            <AddNavigationFormButtons />
+            <AddNavigationFormButtons handleCancel={handleCancel} />
         </form>
     );
 }

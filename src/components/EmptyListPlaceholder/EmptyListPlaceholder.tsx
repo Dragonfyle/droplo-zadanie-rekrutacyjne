@@ -8,7 +8,7 @@ import AddNavigation from "../AddNavigation";
 import { NodeTree } from "../SortableNavigationList/SortableNavigationList.types";
 import { ROOT_NODE_ID } from "../SortableNavigationList/SortableNavigationList.utils";
 
-export default function EmptyListPlaceholder({ setNodeTree }: { setNodeTree: Dispatch<SetStateAction<NodeTree>> }) {
+export default function EmptyListPlaceholder({ handleAdd }: { handleAdd: Dispatch<SetStateAction<NodeTree>> }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
@@ -22,7 +22,13 @@ export default function EmptyListPlaceholder({ setNodeTree }: { setNodeTree: Dis
                 />
             </div>
 
-            {isExpanded && <AddNavigation parentId={ROOT_NODE_ID} setNodeTree={setNodeTree} />}
+            {isExpanded && (
+                <AddNavigation
+                    parentId={ROOT_NODE_ID}
+                    handleAdd={handleAdd}
+                    handleCancel={() => setIsExpanded(false)}
+                />
+            )}
         </section>
     );
 }

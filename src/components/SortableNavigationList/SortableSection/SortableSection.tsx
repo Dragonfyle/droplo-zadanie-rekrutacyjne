@@ -32,7 +32,6 @@ export default function SortableSection({
     }
 
     const isItemOrSectionDragging = isDragging || isSectionDragging;
-
     const isOverSelf = isOver && !isItemOrSectionDragging;
     const isAboveCenter = isPointerAboveVerticalThreshold(mousePosition?.y, rect.current);
     const shouldInsertAbove = isOverSelf && isAboveCenter;

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { Move as MoveIcon } from "lucide-react";
 
 import AddNavigationForm from "@/components/AddNavigation/AddNavigationForm";
@@ -13,6 +13,8 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
     { name, url, isDragging, isFirstLevel, className, setNodeTree, id, ...restProps },
     dragHandleRef
 ) {
+    const [isExpanded, setIsExpanded] = useState(false);
+
     const rounded = isFirstLevel ? "rounded-t-md" : "";
     const opacity = isDragging ? "opacity-30" : "";
 
@@ -28,12 +30,18 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
                     <SortableSectionItemContent name={name} url={url} />
                 </div>
 
-                <SortableSectionItemButtons />
+                <SortableSectionItemButtons handleToggle={() => setIsExpanded((prev) => !prev)} />
             </div>
 
-            <div className="flex w-full items-center rounded-bl-md rounded-br-md bg-bg-secondary px-3xl py-xl">
-                <AddNavigationForm parentId={id} setNodeTree={setNodeTree} />
-            </div>
+            {isExpanded && (
+                <div className="flex w-full items-center rounded-bl-md rounded-br-md bg-bg-secondary px-3xl py-xl">
+                    <AddNavigationForm
+                        parentId={id}
+                        handleAdd={setNodeTree}
+                        handleCancel={() => setIsExpanded(false)}
+                    />
+                </div>
+            )}
         </li>
     );
 });
