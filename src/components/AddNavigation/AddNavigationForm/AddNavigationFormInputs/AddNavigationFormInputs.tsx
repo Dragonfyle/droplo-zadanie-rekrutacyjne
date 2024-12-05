@@ -5,7 +5,7 @@ import Input from "@components/generics/Input";
 import { AddNavigationFormInputsProps } from "./AddNavigationFormInputs.types";
 
 export default function AddNavigationFormInputs({ register, errors }: AddNavigationFormInputsProps) {
-    const border = errors.name ? "border-border-error" : "border-border-primary";
+    const border = errors.name ? "border-border-error outline-border-error" : "border-border-primary";
 
     return (
         <div className="flex flex-col gap-md">

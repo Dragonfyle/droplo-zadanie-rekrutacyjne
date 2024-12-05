@@ -27,6 +27,8 @@ export default function AddNavigationForm({ handleAdd, handleCancel, parentId }:
 
             return nodeTreeCopy;
         });
+
+        handleCancel();
     };
 
     return (
