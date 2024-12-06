@@ -11,8 +11,8 @@ import {
     SwapParentsParams,
     TreeManipulationParams,
 } from "./SortableNavigationList.types";
-import { Maybe } from "@/types/global.types";
 import { isPointerAboveVerticalThreshold } from "./SortableSection";
+import assert from "assert";
 
 const ROOT_NODE_ID = "root";
 
@@ -90,24 +90,20 @@ function moveToOtherParentOrThrow({ nodeTree, active, over }: SwapParentsParams)
     const originIndex = originParentNode?.children?.findIndex((childId) => childId === active.id);
     const destinationIndex = destinationParentNode?.children?.findIndex((childId) => childId === over.id);
 
-    if (lookupFailed(originIndex, destinationIndex)) {
-        throw new Error("failed to find child node when trying to swap parents. does the parent exist?");
+    assert(originIndex !== undefined, "origin index is undefined");
+    assert(originParentNode !== undefined, "origin parent node is undefined");
+    assert(destinationIndex !== undefined, "destination index is undefined");
+    assert(destinationParentNode !== undefined, "destination parent node is undefined");
+
+    originParentNode.children!.splice(originIndex, 1);
+
+    if (!originParentNode.children?.length) {
+        delete originParentNode.children;
     }
 
-    //safety: we know the values are not undefined or null because otherwise an error above would have been thrown
-    originParentNode!.children!.splice(originIndex!, 1);
+    destinationParentNode.children?.splice(destinationIndex, 0, active.id);
 
-    if (!originParentNode!.children?.length) {
-        delete originParentNode!.children;
-    }
-
-    destinationParentNode!.children?.splice(destinationIndex!, 0, active.id);
-
-    return { updatedOriginParent: originParentNode!, updatedDestinationParent: destinationParentNode! };
-}
-
-function lookupFailed(originIndex: Maybe<number>, destinationIndex: Maybe<number>): boolean {
-    return [originIndex, destinationIndex].some((index) => index == null || index === -1);
+    return { updatedOriginParent: originParentNode, updatedDestinationParent: destinationParentNode };
 }
 
 function getSubtree(nodeTree: NodeTree, id: UniqueIdentifier): NodeTree {
