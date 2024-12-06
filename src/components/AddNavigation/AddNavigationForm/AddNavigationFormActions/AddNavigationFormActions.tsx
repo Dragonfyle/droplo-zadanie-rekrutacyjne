@@ -1,8 +1,8 @@
 import Button from "@components/generics/Button";
 
-import { AddNavigationFormButtonsProps } from "./AddNavigationFormButtons.types";
+import { AddNavigationFormActionsProps } from "./AddNavigationFormActions.types";
 
-export default function AddNavigationFormButtons({ label, onCancel }: AddNavigationFormButtonsProps) {
+export default function AddNavigationFormActions({ label, onCancel }: AddNavigationFormActionsProps) {
     return (
         <div className="flex gap-md">
             <Button type="submit" label={label} variant="secondary-color" />

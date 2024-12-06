@@ -3,9 +3,9 @@ import { FieldErrors } from "react-hook-form";
 
 import { Inputs } from "../AddNavigationForm.types";
 
-interface AddNavigationFormInputsProps {
+interface AddNavigationFormBodyProps {
     register: UseFormRegister<Inputs>;
     errors: FieldErrors<Inputs>;
 }
 
-export type { AddNavigationFormInputsProps };
+export type { AddNavigationFormBodyProps };

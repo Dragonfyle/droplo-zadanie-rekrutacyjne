@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import AddNavigationFormButtons from "./AddNavigationFormButtons";
-import AddNavigationFormInputs from "./AddNavigationFormInputs";
+import AddNavigationFormActions from "./AddNavigationFormActions";
+import AddNavigationFormBody from "./AddNavigationFormBody";
 import { AddNavigationFormProps, Inputs } from "./AddNavigationForm.types";
 
 export default function AddNavigationForm({
@@ -46,8 +46,8 @@ export default function AddNavigationForm({
         <form
             className="flex w-full flex-col gap-2xl rounded-md border border-border-primary bg-bg-primary px-3xl py-xl"
             onSubmit={handleSubmit(onSubmit)}>
-            <AddNavigationFormInputs register={register} errors={errors} />
-            <AddNavigationFormButtons label={confirmButtonLabel} onCancel={onCancel} />
+            <AddNavigationFormBody register={register} errors={errors} />
+            <AddNavigationFormActions label={confirmButtonLabel} onCancel={onCancel} />
         </form>
     );
 }

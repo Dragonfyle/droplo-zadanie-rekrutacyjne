@@ -2,9 +2,9 @@ import { Search } from "lucide-react";
 
 import Input from "@components/generics/Input";
 
-import { AddNavigationFormInputsProps } from "./AddNavigationFormInputs.types";
+import { AddNavigationFormBodyProps } from "./AddNavigationFormBody.types";
 
-export default function AddNavigationFormInputs({ register, errors }: AddNavigationFormInputsProps) {
+export default function AddNavigationFormBody({ register, errors }: AddNavigationFormBodyProps) {
     const border = errors.name ? "border-border-error outline-border-error" : "border-border-primary";
 
     return (
@@ -15,7 +15,7 @@ export default function AddNavigationFormInputs({ register, errors }: AddNavigat
                 {...register("name", { required: true })}
                 className={border}
             />
-            {errors.name && <p className="text-error text-sm/semibold">Nazwa jest wymagana</p>}
+            {errors.name && <p className="text-sm/semibold text-error">Nazwa jest wymagana</p>}
 
             <Input
                 label="Link"
