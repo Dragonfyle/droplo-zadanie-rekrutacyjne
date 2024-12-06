@@ -1,9 +1,9 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 
-interface PresentationalSectionProps {
+interface StaticSectionProps {
     children: React.ReactNode;
     Element?: React.ElementType;
     id: UniqueIdentifier;
 }
 
-export type { PresentationalSectionProps };
+export type { StaticSectionProps };

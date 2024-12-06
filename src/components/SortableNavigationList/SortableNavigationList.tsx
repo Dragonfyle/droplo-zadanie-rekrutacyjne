@@ -16,7 +16,7 @@ import {
     ROOT_NODE_ID,
 } from "./SortableNavigationList.utils";
 import SortableSection from "./SortableSection";
-import PresentationalSection from "./PresentationalSection";
+import StaticSection from "./StaticSection";
 import SortableNavigationListAddButton from "./SortableNavigationListAddButton";
 import EmptyListPlaceholder from "../EmptyListPlaceholder";
 
@@ -85,7 +85,7 @@ export default function SortableNavigationList() {
 
             <DragOverlay dropAnimation={null}>
                 {isDragging && (
-                    <PresentationalSection
+                    <StaticSection
                         nodeTree={getSubtree(nodeTree, activeItemId)}
                         id={activeItemId}
                         className="origin-top-left scale-75"
