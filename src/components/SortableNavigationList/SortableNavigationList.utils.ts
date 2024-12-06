@@ -12,7 +12,7 @@ import {
     TreeManipulationParams,
 } from "./SortableNavigationList.types";
 import { Maybe } from "@/types/global.types";
-import { isPointerAboveVerticalThreshold } from "./SortableSection/SortableSection.utils";
+import { isPointerAboveVerticalThreshold } from "./SortableSection";
 
 const ROOT_NODE_ID = "root";
 

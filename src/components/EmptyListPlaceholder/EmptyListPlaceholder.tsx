@@ -5,8 +5,8 @@ import Button from "@generics/Button";
 
 import EmptyListPlaceholderText from "./EmptyListPlaceholderText";
 import AddNavigation from "../AddNavigation";
-import { NodeTree } from "../SortableNavigationList/SortableNavigationList.types";
-import { ROOT_NODE_ID } from "../SortableNavigationList/SortableNavigationList.utils";
+import { NodeTree } from "../SortableNavigationList";
+import { ROOT_NODE_ID } from "../SortableNavigationList";
 
 export default function EmptyListPlaceholder({ handleAdd }: { handleAdd: Dispatch<SetStateAction<NodeTree>> }) {
     const [isExpanded, setIsExpanded] = useState(false);

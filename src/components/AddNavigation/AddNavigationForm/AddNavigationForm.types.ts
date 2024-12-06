@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { UniqueIdentifier } from "@dnd-kit/core";
 
-import { NodeTree } from "@/components/SortableNavigationList/SortableNavigationList.types";
+import { NodeTree } from "@/components/SortableNavigationList";
 
 type Inputs = {
     name: string;

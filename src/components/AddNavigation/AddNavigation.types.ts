@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import { UniqueIdentifier } from "@dnd-kit/core";
 
-import { NodeTree } from "../SortableNavigationList/SortableNavigationList.types";
-import { ConfirmButtonLabel } from "./AddNavigationForm/AddNavigationForm.types";
+import { NodeTree } from "../SortableNavigationList";
+import { ConfirmButtonLabel } from "./AddNavigationForm";
 
 interface AddNavigationProps {
     parentId: UniqueIdentifier;

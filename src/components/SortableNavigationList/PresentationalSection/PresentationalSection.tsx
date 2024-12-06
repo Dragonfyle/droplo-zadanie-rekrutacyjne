@@ -1,8 +1,8 @@
 "use client";
-
-import { NodeTree } from "@/components/SortableNavigationList/SortableNavigationList.types";
-import SortableSectionItem from "@/components/SortableNavigationList/SortableSection/SortableSectionItem";
 import { UniqueIdentifier } from "@dnd-kit/core";
+
+import { NodeTree } from "@/components/SortableNavigationList";
+import SortableSectionItem from "@/components/SortableNavigationList/SortableSection/SortableSectionItem";
 
 interface StaticSectionProps {
     nodeTree: NodeTree;
