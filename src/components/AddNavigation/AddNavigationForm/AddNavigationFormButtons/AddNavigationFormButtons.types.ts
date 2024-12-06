@@ -2,7 +2,7 @@ import { ConfirmButtonLabel } from "../AddNavigationForm.types";
 
 interface AddNavigationFormButtonsProps {
     label: ConfirmButtonLabel;
-    handleCancel: () => void;
+    onCancel: () => void;
 }
 
 export type { AddNavigationFormButtonsProps };

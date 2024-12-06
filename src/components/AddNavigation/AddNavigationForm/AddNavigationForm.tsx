@@ -5,8 +5,8 @@ import AddNavigationFormInputs from "./AddNavigationFormInputs";
 import { AddNavigationFormProps, Inputs } from "./AddNavigationForm.types";
 
 export default function AddNavigationForm({
-    handleAdd,
-    handleCancel,
+    onAdd,
+    onCancel,
     parentId,
     defaultValues,
     confirmButtonLabel,
@@ -23,7 +23,7 @@ export default function AddNavigationForm({
     });
 
     const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-        handleAdd((prev) => {
+        onAdd((prev) => {
             const nodeTreeCopy = structuredClone(prev);
             const newId = Math.random().toString();
 
@@ -39,7 +39,7 @@ export default function AddNavigationForm({
             return nodeTreeCopy;
         });
 
-        handleCancel();
+        onCancel();
     };
 
     return (
@@ -47,7 +47,7 @@ export default function AddNavigationForm({
             className="flex w-full flex-col gap-2xl rounded-md border border-border-primary bg-bg-primary px-3xl py-xl"
             onSubmit={handleSubmit(onSubmit)}>
             <AddNavigationFormInputs register={register} errors={errors} />
-            <AddNavigationFormButtons label={confirmButtonLabel} handleCancel={handleCancel} />
+            <AddNavigationFormButtons label={confirmButtonLabel} onCancel={onCancel} />
         </form>
     );
 }

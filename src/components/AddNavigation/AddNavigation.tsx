@@ -6,8 +6,8 @@ export default function AddNavigation({ parentId, handleAdd, handleCancel, confi
         <section className="flex w-full justify-center rounded-md border border-border-secondary bg-bg-primary px-xl py-3xl">
             <AddNavigationForm
                 parentId={parentId}
-                handleAdd={handleAdd}
-                handleCancel={handleCancel}
+                onAdd={handleAdd}
+                onCancel={handleCancel}
                 confirmButtonLabel={confirmButtonLabel}
             />
         </section>

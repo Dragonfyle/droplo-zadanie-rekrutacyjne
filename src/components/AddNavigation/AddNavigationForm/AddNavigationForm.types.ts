@@ -11,8 +11,8 @@ type Inputs = {
 type ConfirmButtonLabel = "Dodaj" | "Zapisz";
 
 interface AddNavigationFormProps {
-    handleAdd: Dispatch<SetStateAction<NodeTree>>;
-    handleCancel: () => void;
+    onAdd: Dispatch<SetStateAction<NodeTree>>;
+    onCancel: () => void;
     parentId: UniqueIdentifier;
     defaultValues?: Partial<Inputs>;
     confirmButtonLabel: ConfirmButtonLabel;
