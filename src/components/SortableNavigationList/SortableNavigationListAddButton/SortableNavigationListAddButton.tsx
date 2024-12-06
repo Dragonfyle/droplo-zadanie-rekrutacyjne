@@ -20,8 +20,8 @@ export default function SortableNavigationListAddButton({ handleAdd }: SortableN
             {isExpanded && (
                 <AddNavigationForm
                     parentId={ROOT_NODE_ID}
-                    handleAdd={handleAdd}
-                    handleCancel={() => setIsExpanded(false)}
+                    onAdd={handleAdd}
+                    onCancel={() => setIsExpanded(false)}
                     confirmButtonLabel="Dodaj"
                 />
             )}

@@ -1,3 +1,3 @@
 export { default } from "./SortableSection";
 
-export type { isPointerAboveVerticalThreshold } from "./SortableSection.utils";
+export { isPointerAboveVerticalThreshold } from "./SortableSection.utils";

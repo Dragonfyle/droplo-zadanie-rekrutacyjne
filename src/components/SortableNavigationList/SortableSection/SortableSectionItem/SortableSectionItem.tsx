@@ -6,7 +6,7 @@ import { Move as MoveIcon } from "lucide-react";
 import AddNavigationForm from "@/components/AddNavigation/AddNavigationForm";
 
 import { SortableSectionItemProps } from "./SortableSectionItem.types";
-import SortableSectionItemButtons from "./SortableSectionItemButtons";
+import SortableSectionItemActions from "./SortableSectionItemActions";
 import SortableSectionItemContent from "./SortableSectionItemContent";
 import { getParentId } from "../../SortableNavigationList.utils";
 
@@ -65,10 +65,10 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
                     <SortableSectionItemContent name={name} url={url} />
                 </div>
 
-                <SortableSectionItemButtons
-                    handleToggle={() => setIsExpanded((prev) => !prev)}
-                    handleRemove={handleRemove}
-                    handleEdit={handleEdit}
+                <SortableSectionItemActions
+                    onExpand={() => setIsExpanded(true)}
+                    onRemove={handleRemove}
+                    onEdit={handleEdit}
                 />
             </div>
 
@@ -76,8 +76,8 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
                 <div className="flex w-full items-center rounded-bl-md rounded-br-md bg-bg-secondary px-3xl py-xl">
                     <AddNavigationForm
                         parentId={id}
-                        handleAdd={setNodeTree}
-                        handleCancel={handleCancel}
+                        onAdd={setNodeTree}
+                        onCancel={handleCancel}
                         defaultValues={isEditing ? { name, url } : undefined}
                         confirmButtonLabel={isEditing ? "Zapisz" : "Dodaj"}
                     />
