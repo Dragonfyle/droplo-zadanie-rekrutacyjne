@@ -25,7 +25,7 @@ export default function SortableSection({
     });
 
     const node = nodeTree.get(id);
-    const childrenIds = node?.children;
+    const childrenIds = node?.children ?? [];
 
     if (!node) {
         return null;
@@ -61,20 +61,19 @@ export default function SortableSection({
                 </>
             )}
 
-            {childrenIds?.length &&
-                childrenIds.map((childId) => (
-                    <li key={childId}>
-                        <SortableSection
-                            className={nestingMarginClasses}
-                            nodeTree={nodeTree}
-                            id={childId}
-                            isSectionDragging={isItemOrSectionDragging}
-                            firstNodeId={firstNodeId}
-                            isFirstLevel={id === ROOT_NODE_ID}
-                            setNodeTree={setNodeTree}
-                        />
-                    </li>
-                ))}
+            {childrenIds.map((childId) => (
+                <li key={childId}>
+                    <SortableSection
+                        className={nestingMarginClasses}
+                        nodeTree={nodeTree}
+                        id={childId}
+                        isSectionDragging={isItemOrSectionDragging}
+                        firstNodeId={firstNodeId}
+                        isFirstLevel={id === ROOT_NODE_ID}
+                        setNodeTree={setNodeTree}
+                    />
+                </li>
+            ))}
         </ul>
     );
 }
