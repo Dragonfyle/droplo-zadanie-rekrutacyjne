@@ -53,6 +53,18 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
         setIsEditing(false);
     };
 
+    const handleSave = ({ name, url }: { name: string; url: string }) => {
+        setNodeTree((prev) => {
+            const nodeTreeCopy = structuredClone(prev);
+            nodeTreeCopy.set(id, { name, url });
+
+            return nodeTreeCopy;
+        });
+
+        setIsExpanded(false);
+        setIsEditing(false);
+    };
+
     return (
         <li ref={dragHandleRef} className={`w-full ${opacity} ${className}`}>
             <div
@@ -77,9 +89,11 @@ export default forwardRef<HTMLLIElement, SortableSectionItemProps>(function Sort
                     <AddNavigationForm
                         parentId={id}
                         onAdd={setNodeTree}
+                        onSave={handleSave}
                         onCancel={handleCancel}
                         defaultValues={isEditing ? { name, url } : undefined}
                         confirmButtonLabel={isEditing ? "Zapisz" : "Dodaj"}
+                        isEditing={isEditing}
                     />
                 </div>
             )}

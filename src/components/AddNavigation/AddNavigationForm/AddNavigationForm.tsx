@@ -6,10 +6,12 @@ import { AddNavigationFormProps, Inputs } from "./AddNavigationForm.types";
 
 export default function AddNavigationForm({
     onAdd,
+    onSave,
     onCancel,
     parentId,
     defaultValues,
     confirmButtonLabel,
+    isEditing,
 }: AddNavigationFormProps) {
     const {
         register,
@@ -42,10 +44,14 @@ export default function AddNavigationForm({
         onCancel();
     };
 
+    const handleSave: SubmitHandler<Inputs> = (data: Inputs) => {
+        onSave?.(data);
+    };
+
     return (
         <form
             className="flex w-full flex-col gap-2xl rounded-md border border-border-primary bg-bg-primary px-3xl py-xl"
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={isEditing ? handleSubmit(handleSave) : handleSubmit(onSubmit)}>
             <AddNavigationFormBody register={register} errors={errors} />
             <AddNavigationFormActions label={confirmButtonLabel} onCancel={onCancel} />
         </form>
